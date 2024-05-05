@@ -1,0 +1,30 @@
+<form class="p-4" (ngSubmit)="OnSubmit()" [formGroup]="formData">
+    <div class="form-group ">
+        <label for="userName">UserName</label>
+        <input type="text" class="form-control" id="userName" formControlName="userName">
+        <span class="text-danger" *ngIf="!formData.get('userName').valid && formData.get('userName').touched">Required valid User Name..
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" formControlName="email">
+        <span class="text-danger" *ngIf="formData.get('email').pending">Checking email uniqueness...
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921" class="
+            my-email-loader" alt="">
+        </span>
+        <span class="text-danger" *ngIf="!formData.get('email').valid && formData.get('email').touched
+        && !formData.get('email').pending">
+            <ng-container *ngIf="formData.get('email').errors.required">Email id is required</ng-container>
+            <ng-container *ngIf="formData.get('email').errors.uniqueEmail">Email id is already taken. Please
+                choose another Email id
+            </ng-container>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" class="form-control" id="password" formControlName="password">
+        <span class="text-danger" *ngIf="!formData.get('userName').valid && formData.get('userName').touched">Required valid Password..
+        </span>
+    </div>
+    <button class="btn btn-primary btn-block">Submit</button>
+</form>
